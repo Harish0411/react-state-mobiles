@@ -1,0 +1,24 @@
+h1{
+    font-size: 28px;
+    color:darkgoldenrod;
+    font-family: sans-serif;
+    margin-left: 10px;
+}
+h1 span{
+    background-color: aliceblue;
+    color: brown;
+}
+button{
+    border: 0;
+    padding: 12px 24px;
+    background-color:darkgoldenrod;
+    margin:10px;
+    color: aliceblue;
+    font-size: 18px;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+button:hover{
+    background-color: aliceblue;
+    color: darkgoldenrod;
+}
