@@ -1,0 +1,19 @@
+table,tr,td,th{
+    border:1px solid black;
+    padding: 20px;
+  
+}
+table{
+    width: 90%;
+    margin: 30px auto;
+    border-collapse: collapse;
+}
+.form{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  
+}
+

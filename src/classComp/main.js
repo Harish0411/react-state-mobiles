@@ -36,7 +36,9 @@ export default class main extends Component {
                 price : 13999,
                 isPurchased : true}
             ],
-        purchase : true
+        purchase : true,
+        age : 23,
+        price : []
           
         }
         this.names = this.state.mobiles
@@ -53,6 +55,12 @@ export default class main extends Component {
     })
     {param === 'asc' ? this.setState({mobiles : sort}) : this.setState({mobiles : sort.reverse()})}
   }
+
+componentDidMount(){
+  setInterval(() => {
+    this.setState({price : this.state.mobiles[0].price + 2000})
+  }, 2000)
+}
 
   priceSorting = (param) => {
 
@@ -80,6 +88,7 @@ initial = () =>{
      <button onClick={() => { this.state.purchase ? this.filtered() : this.initial()}}>Purchased</button> 
 
      {this.state.mobiles.map((item,index) =>  <h2 key={index}>{item.name} : {item.price}</h2> )}
+    <p> {this.state.price}</p>
  </div>
      
     )

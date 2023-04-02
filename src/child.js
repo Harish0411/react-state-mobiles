@@ -16,6 +16,7 @@ const nameSorting = (order) =>{
         {order==='asc' ? changeMobile(sort):changeMobile(sort.reverse())}
 }
 
+
 let priceSorting = (param) =>{
     var number;
      number = [...props.data].sort((a,b) => a.price-b.price);
@@ -31,11 +32,11 @@ let filtered = () =>{
 
 return (
     <>
-     <button onClick={() => nameSorting('asc')}>sort by ascending(name)</button>
-     <button onClick={() => nameSorting('dsc')}>sort by descending(name)</button>
-     <button onClick={() => priceSorting('ltr')}>low to high(price)</button>
-     <button onClick={() => priceSorting('rtl')}>high to low(price)</button>
-     <button onClick={() => filtered()}>Purchased</button>
+     <button onClick={nameSorting('asc')}>sort by ascending(name)</button>
+     <button onClick={nameSorting('dsc')}>sort by descending(name)</button>
+     <button onClick={priceSorting('ltr')}>low to high(price)</button>
+     <button onClick={priceSorting('rtl')}>high to low(price)</button>
+     <button onClick={filtered()}>Purchased</button>
 
      {mobile.map((e,i) => <h1 key={i}>{e.name} <span>{e.price}</span></h1>)}
     </>
