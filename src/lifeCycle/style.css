@@ -1,12 +1,26 @@
-table,tr,td,th{
+/* table,tr,td,th{
     border:1px solid black;
     padding: 20px;
   
+} */
+html.dark {
+    background-color: #111;
+    color: white;
+  }
+tr{
+    border-bottom: 1px solid aqua;
+}
+thead td{
+    text-transform: uppercase;
+}
+tr:nth-child(even){
+    background-color: #e0e0754f;
 }
 table{
     width: 90%;
     margin: 30px auto;
     border-collapse: collapse;
+    text-align: center;
 }
 .form{
     width: 90%;
@@ -15,5 +29,41 @@ table{
     justify-content: center;
     text-align: center;
   
+}
+.content{
+    text-align: center;
+}
+button{
+    padding: 7px 14px;
+    border: 0;
+    cursor: pointer;
+    margin: 20px;
+    background-color: aqua;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+button:hover{
+    background-color: beige;
+    color: black;
+}
+input[type="checkbox"]{
+    accent-color: aqua;
+    cursor: pointer; 
+    width: 20px;
+    height: 20px;
+}
+.header{
+    padding: 15px 10px;
+    background-color:antiquewhite;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.user_name{
+    font-size: 40px;
+    color: aqua;
+    text-transform: capitalize;
 }
 

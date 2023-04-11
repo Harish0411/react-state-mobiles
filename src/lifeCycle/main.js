@@ -1,38 +1,19 @@
-import React, { Component , PureComponent} from "react";
+import React, { Component, PureComponent } from "react";
 import Child from "./child";
 import { Index } from "..";
-import './style.css'
+import "./style.css";
 
 export default class Main extends Component {
   constructor(props) {
     super(props);
-  console.log(props);
+this.newTask = props.mytasks
     this.state = {
-      tasks: [
-        {
-          id: 1,
-          name: "AAA",
-          description: "this task is very easy",
-          isCompleted: false,
-        },
-        {
-          id: 2,
-          name: "BBB",
-          description: "this task is moderate",
-          isCompleted: false,
-        },
-        {
-          id: 3,
-          name: "CCC",
-          description: "this task is very hard",
-          isCompleted: false,
-        },
-      ],
+      tasks: this.newTask,
       filter: false,
       checked: true,
       dark: true,
       task: "view completed task",
-      serial : 1
+      serial: 1,
     };
     console.log(this.state.tasks);
   }
@@ -40,36 +21,37 @@ export default class Main extends Component {
   fliterTask = (e) => {
     this.setState({ filter: !this.state.filter, dark: !this.state.dark });
     e.target.innerHTML = "view all tasks";
-  }
-
+  };
   initial = (e) => {
     e.target.innerHTML = "view completed tasks";
     this.setState({ dark: !this.state.dark, filter: !this.state.filter });
-  }
-
+  };
   taskComplete = (index) => {
     console.log("hi");
     const temp = [...this.state.tasks];
     const completed = temp.map((e, i) =>
       index === i ? { ...e, isCompleted: !e.isCompleted } : e
     );
+    // const completed = (temp[index].isCompleted = "true");
     console.log(completed);
     this.setState({ tasks: completed });
   };
 
-  componentDidMount() {
-    console.log(this.state.tasks);
-    console.log(this.props.mytask);
-    console.log('child mount');
-  
+  deleteValue = (index) =>{
+    let tempArr = [...this.state.tasks]
+    tempArr.splice(index,1)
+    this.setState({tasks : tempArr})
+   
   }
-  generateSerial = () =>{
-    return this.state.serial++;
+
+  componentDidMount() {
+    console.log("child mount");
   }
 
   render() {
+   // console.log(this.newTask);
     return (
-      <div>
+      <div className="content">
         <button
           onClick={(e) =>
             this.state.dark ? this.fliterTask(e) : this.initial(e)
@@ -77,33 +59,38 @@ export default class Main extends Component {
         >
           view Completed task
         </button>
-         <table>
-                 <thead>
-                  <tr>
-                  <td>S.No</td>
-                  <td>Task Name</td>
-                  <td>Description</td>
-                  <td>Completed or not</td>
-                  </tr>
-                 </thead>
-                 <tbody>
-        {this.state.tasks
-          .filter((e) => (this.state.filter ? e.isCompleted === true : true))
-          .map((e, i) => (
-                 <tr  key={i}>
-                  <td>{this.generateSerial()}</td>
+        <table>
+          <thead>
+            <tr>
+              <td>S.No</td>
+              <td>Task Name</td>
+              <td>Description</td>
+              <td>Completed or not</td>
+              <td>Delete</td>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.tasks
+              .filter((e) =>
+                this.state.filter ? e.isCompleted === true : true
+              )
+              .map((e, i) => (
+                <tr key={i}>
+                  <td>{i+1}</td>
                   <td>{e.name}</td>
                   <td>{e.description}</td>
-                  <td><input
-                  type="checkbox"
-                  checked={e.isCompleted === true}
-                  onChange={() => this.taskComplete(i)}
-                /></td>
-                 </tr>
-                  ))}
-                  </tbody>
-            </table>
-           
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={e.isCompleted}
+                      onChange={() => this.taskComplete(i)}
+                    />
+                  </td>
+                  <td><button onClick={() => this.deleteValue(i)}>Del</button></td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
       </div>
     );
   }
